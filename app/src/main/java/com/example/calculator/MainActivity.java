@@ -8,10 +8,10 @@ import android.widget.TextView;
 
 public class MainActivity extends AppCompatActivity {
 
-    Button button0, button1, button2, button3, button4, button5, button6, button7, button8, button9, buttonC, buttonE, buttonA, buttonS, buttonM, buttonD;
+    Button button0, button1, button2, button3, button4, button5, button6, button7, button8, button9, buttonC, buttonE, buttonA, buttonS, buttonM, buttonD, buttonP, buttonDivX;
     TextView textView;
     Float textVal1, textVal2, result;
-    Boolean add, sub, mult, div;
+    Boolean add, sub, multi, div, percent, divX;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -32,8 +32,10 @@ public class MainActivity extends AppCompatActivity {
         buttonE= findViewById(R.id.btnEqual);
         buttonA= findViewById(R.id.btnPlus);
         buttonS= findViewById(R.id.btnMinus);
-        buttonM= findViewById(R.id.btnMult);
+        buttonM= findViewById(R.id.btnMulti);
         buttonD= findViewById(R.id.btnDiv);
+        buttonP= findViewById(R.id.btnPercent);
+        buttonDivX= findViewById(R.id.btnDivByX);
         textView= findViewById(R.id.textView);
     }
 
@@ -114,15 +116,28 @@ public class MainActivity extends AppCompatActivity {
             sub = false;
         }
 
-        else if (mult == true){
+        else if (multi == true){
             result = textVal1 * textVal2;
             textView.setText(result + "");
-            mult = false;
+            multi = false;
         }
 
         else if (div == true){
             result = textVal1 / textVal2;
             textView.setText(result + "");
+            div = false;
+        }
+
+        else if (percent == true){
+            result = textVal1 / 100;
+            textView.setText(result + "");
+            percent = false;
+        }
+
+        else if (divX == true){
+            result = 1 / textVal1;
+            textView.setText(result + "");
+            divX = false;
         }
     }
 
@@ -140,9 +155,9 @@ public class MainActivity extends AppCompatActivity {
                 textView.setText(null);
                 break;
 
-            case R.id.btnMult:
+            case R.id.btnMulti:
                 textVal1 = Float.parseFloat(textView.getText().toString());
-                mult = true;
+                multi = true;
                 textView.setText(null);
                 break;
 
@@ -151,7 +166,16 @@ public class MainActivity extends AppCompatActivity {
                 div = true;
                 textView.setText(null);
                 break;
-        }
 
+            case R.id.btnPercent:
+                textVal1 = Float.parseFloat(textView.getText().toString());
+                percent = true;
+                break;
+
+            case R.id.btnDivByX:
+                textVal1 = Float.parseFloat(textView.getText().toString());
+                divX = true;
+                break;
+        }
     }
 }
